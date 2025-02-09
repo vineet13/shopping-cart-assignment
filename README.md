@@ -26,7 +26,7 @@ cd shopping-cart-api
 ### Install Dependencies
 
 ```md
-npm install or yarn install
+npm install
 ```
 
 ## Running the Project
@@ -61,7 +61,7 @@ List of available products
 npm run dev
 ```
 
-This starts the server in development mode with TypeScript support.
+This starts the server in development mode with TypeScript support at http://localhost:3001/.
 
 ### Build for Production
 
@@ -81,7 +81,7 @@ This runs the compiled JavaScript version of the project.
 
 ## API Endpoints
 
-- ### Add Product to Cart
+### 1️⃣ Add Product to Cart
 
 ```md
 POST /cart/add
@@ -104,7 +104,7 @@ POST /cart/add
 }
 ```
 
-- ### View Cart
+### 2️⃣ View Cart
 
 ```sh
 GET /cart
@@ -117,7 +117,7 @@ GET /cart
   "items": [
     { "productName": "weetabix", "quantity": 2, "price": 7.29 }
   ],
-  "total": 14.58
+  "total" : { subtotal: '14.58', tax: '1.82', total: '16.40' }
 }
 ```
 
@@ -129,10 +129,18 @@ The project includes unit tests for the shopping cart. Run the tests using:
 npm test
 ```
 
-## Error Handling
+The test suite ensures the correctness of the shopping cart implementation by verifying:
 
-The application includes robust error handling for:
+- ✅ Adding Products: Confirms products are added to the cart successfully.
+- ✅ Cart Calculations: Ensures accurate computation of subtotal, tax, and total.
+- ✅ Quantity Updates: If the same product is added multiple times, the quantity updates accordingly.
+- ✅ Negative Test Cases:
+  - Ensures an error is thrown if the quantity is less than 0.
+  - Ensures an error is thrown if the product name is empty.
+- ✅ Test Coverage: The test results should demonstrate 100% coverage of all critical functionalities.
 
-- Invalid product names (Products not in the Price API)
-- Negative or zero quantities
-- Network errors while fetching product prices
+## Assumptions & Tradeoffs
+
+- Tax Rate: Fixed at 12.5% of the subtotal.
+- Price API Dependency: Product prices are fetched dynamically from the Price API. The API must be running for cart operations to work.
+- In-Memory Cart Storage: The cart state is maintained in memory with no persistent storage, as per the assignment guidelines.

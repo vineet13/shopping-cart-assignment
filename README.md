@@ -126,6 +126,7 @@ GET /cart
 The project includes unit tests for the shopping cart. Run the tests using:
 
 ```sh
+npm run serve-products
 npm test
 ```
 

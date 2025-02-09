@@ -61,7 +61,7 @@ List of available products
 npm run dev
 ```
 
-This starts the server in development mode with TypeScript support at http://localhost:3001/.
+This starts the server in development mode with TypeScript support at http://localhost:3002/.
 
 ### Build for Production
 
